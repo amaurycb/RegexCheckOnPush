@@ -1,0 +1,21 @@
+name: RegexCheckOnPush 
+description: "Check the occurrence of a regular expression in the entire repository or only in the files modified in the last commit."
+author: "@amaurycb"
+on: [push]
+
+jobs:
+  check_patterns:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Git
+      run: |
+        git fetch --depth=2
+
+    - name: Run pattern check
+      run: |
+        chmod +x ./check_patterns.sh
+        ./check_patterns.sh
