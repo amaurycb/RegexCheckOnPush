@@ -1,12 +1,11 @@
 #!/bin/bash
 
 # Define the patterns to search for
-#patterns=$(echo "${INPUT_PATTERNS}"
-pattern="\bdelete\b"
+patterns=$(echo "${INPUT_PATTERNS}"
 
 #Define if deep check is needed
-#deep=$(echo "${INPUT_DEEP}")
-deep=1
+deep=$(echo "${INPUT_DEEP}")
+
   # Get a list of all files in the repository
 if [ $deep -eq 0 ]; then
   # Obtener el hash del último commit
