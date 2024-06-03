@@ -1,6 +1,20 @@
 name: RegexCheckOnPush 
 description: "Check the occurrence of a regular expression in the entire repository or only in the files modified in the last commit."
 author: "@amaurycb"
+repo: 'https://github.com/amaurycb/RegexCheckOnPush.git'
+branding:
+  icon: 'eye'
+  color: 'red'
+
+inputs:
+  deep:
+    description: 'Defines the depth of the search. 1 searches the entire repository, 0 searches only the files modified in the last commit.'
+    required: false
+    default: '1'
+  pattern:
+    description: 'El segundo parámetro'
+    required: true
+    default: '\bdelete\b'
 on: [push]
 
 jobs:
