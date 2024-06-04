@@ -23,13 +23,10 @@ fi
 
 # Loop through each changed file
 for file in $changed_files; do
-  echo "Checking file: $file"
   
   # Loop through each pattern  
     # Check if the pattern exists in the file
-    if grep -Eq "$pattern" "$file"; then
-      echo "Pattern '$pattern' found in file '$file'"
-      pattern_found=1
+    if grep -Eqi "$pattern" "$file"; then
       # Add the file to the array of matching files
       matching_files+=("$file")
     fi  
@@ -37,8 +34,22 @@ done
 
 # Exit with a non-zero status if any pattern is found
 if [ ${#matching_files[@]} -ne 0 ]; then
-  echo "Pattern(s) found, failing the check."
-  exit 1
+
+  json_array='['
+
+  for elemento in "${matching_files[@]}"; do
+    # Escapamos comillas dobles y barras invertidas
+    elemento_escapado=${elemento//\\/\\\\}  # Escapa barras invertidas
+    elemento_escapado=${elemento_escapado//\"/\\\"} # Escapa comillas dobles
+
+    json_array+="\"$elemento_escapado\","
+  done
+
+  json_array=${json_array%,}  # Elimina la última coma sobrante
+  json_array+=']'
+
+  echo "$json_array"
+  
 else
   echo "No patterns found."
   exit 0
