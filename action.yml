@@ -1,7 +1,7 @@
 name: RegexCheckOnPush 
 description: "Check the occurrence of a regular expression in the entire repository or only in the files modified in the last commit."
 author: "@amaurycb"
-repo: 'https://github.com/amaurycb/RegexCheckOnPush.git'
+repo: 'https://github.com/amaurycb/RegexCheckOnPush'
 branding:
   icon: 'eye'
   color: 'red'
