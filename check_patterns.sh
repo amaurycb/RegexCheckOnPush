@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the patterns to search for
-pattern=$(echo "${INPUT_PATTERN}"
+pattern=$(echo "${INPUT_PATTERN}")
 
 #Define if deep check is needed
 deep=$(echo "${INPUT_DEEP}")
