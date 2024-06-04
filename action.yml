@@ -5,33 +5,22 @@ repo: 'https://github.com/amaurycb/RegexCheckOnPush'
 branding:
   icon: 'eye'
   color: 'red'
+inputs:
+  deep:
+    description: 'Defines the depth of the search. 1 searches the entire repository, 0 searches only the files modified in the last commit.'
+    required: false
+    default: '1'
+  pattern:
+    description: 'pattern to search for in the files.'
+    required: true
+    default: '\bdelete\b'             
+outputs:  
+  filesfound: 
+    description: 'array with the files found'
 
-on: 
-  workflow_dispatch:
-    inputs:
-      deep:
-        description: 'Defines the depth of the search. 1 searches the entire repository, 0 searches only the files modified in the last commit.'
-        required: false
-        default: '1'
-      pattern:
-        description: 'El segundo parámetro'
-        required: true
-        default: '\bdelete\b'
-#on: [push]
-
-jobs:
-  check_patterns:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Git
-      run: |
-        git fetch --depth=2
-
-    - name: Run pattern check
-      run: |
-        chmod +x ./check_patterns.sh
-        ./check_patterns.sh
+runs:
+  using: 'ubuntu-latest'
+  main: 'check_pattern.sh
+    with:
+      pattern: ${{ inputs.pattern }}
+      deep: ${{ inputs.deep }}
