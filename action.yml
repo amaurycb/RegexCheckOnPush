@@ -16,7 +16,7 @@ inputs:
     default: '\bdelete\b'             
 outputs:  
   filesfound: 
-    description: 'array with the files found'
+    description: 'json with the files found or susseful message.'
 
 runs:
   using: 'ubuntu-latest'

@@ -6,6 +6,9 @@ pattern=$(echo "${INPUT_PATTERN}")
 #Define if deep check is needed
 deep=$(echo "${INPUT_DEEP}")
 
+# Array to store the files that match the pattern
+matching_files=()
+
   # Get a list of all files in the repository
 if [ $deep -eq 0 ]; then
   # Obtener el hash del último commit
@@ -16,25 +19,37 @@ else
   changed_files=$(git ls-files)
 fi
 
-# Flag to indicate if any pattern is found
-pattern_found=0
+
 
 # Loop through each changed file
 for file in $changed_files; do
-  echo "Checking file: $file"
   
   # Loop through each pattern  
     # Check if the pattern exists in the file
-    if grep -Eq "$pattern" "$file"; then
-      echo "Pattern '$pattern' found in file '$file'"
-      pattern_found=1
+    if grep -Eqi "$pattern" "$file"; then
+      # Add the file to the array of matching files
+      matching_files+=("$file")
     fi  
 done
 
 # Exit with a non-zero status if any pattern is found
-if [ $pattern_found -ne 0 ]; then
-  echo "Pattern(s) found, failing the check."
-  exit 1
+if [ ${#matching_files[@]} -ne 0 ]; then
+
+  json_array='['
+
+  for elemento in "${matching_files[@]}"; do
+    # Escapamos comillas dobles y barras invertidas
+    elemento_escapado=${elemento//\\/\\\\}  # Escapa barras invertidas
+    elemento_escapado=${elemento_escapado//\"/\\\"} # Escapa comillas dobles
+
+    json_array+="\"$elemento_escapado\","
+  done
+
+  json_array=${json_array%,}  # Elimina la última coma sobrante
+  json_array+=']'
+
+  echo "$json_array"
+  
 else
   echo "No patterns found."
   exit 0
