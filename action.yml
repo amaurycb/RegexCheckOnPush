@@ -6,16 +6,18 @@ branding:
   icon: 'eye'
   color: 'red'
 
-inputs:
-  deep:
-    description: 'Defines the depth of the search. 1 searches the entire repository, 0 searches only the files modified in the last commit.'
-    required: false
-    default: '1'
-  pattern:
-    description: 'El segundo parámetro'
-    required: true
-    default: '\bdelete\b'
-on: [push]
+on: 
+  workflow_dispatch:
+    inputs:
+      deep:
+        description: 'Defines the depth of the search. 1 searches the entire repository, 0 searches only the files modified in the last commit.'
+        required: false
+        default: '1'
+      pattern:
+        description: 'El segundo parámetro'
+        required: true
+        default: '\bdelete\b'
+#on: [push]
 
 jobs:
   check_patterns:
