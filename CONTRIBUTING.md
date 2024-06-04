@@ -1,6 +1,6 @@
-# Contributing to ${repository.name}
+# Contributing to RegexCheckOnPush 
 
-Thank you for your interest in contributing to ${repository.name}! We value all contributions, big or small. Here's a guide to help you get started.
+Thank you for your interest in contributing to RegexCheckOnPush ! We value all contributions, big or small. Here's a guide to help you get started.
 
 ## Types of Contributions
 
@@ -23,7 +23,6 @@ We're open to all kinds of contributions, including:
 
 ## Contribution Guidelines
 
-* **Code of Conduct:** Please follow our [Code of Conduct]([link to your code of conduct if you have one]).
 * **Code Style:** Try to follow the existing code style.
 * **Tests:** If possible, include tests for your changes.
 * **Documentation:** Update the documentation if your changes require it.
@@ -33,5 +32,5 @@ We're open to all kinds of contributions, including:
 
 If you have any questions or need help, feel free to open an issue or contact me
 
-Thank you for contributing to ${repository.name}!
+Thank you for contributing to RegexCheckOnPush !
 
