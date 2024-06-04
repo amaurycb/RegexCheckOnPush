@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Run RegexCheckOnPush
-        uses: your-github-username/your-repo-name/.github/actions/RegexCheckOnPush@v1
+        uses: amaurycb/RegexCheckOnPush
         with:
           pattern: 'your-regex-pattern'
           deep: '0 or 1'
